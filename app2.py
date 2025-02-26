@@ -71,18 +71,35 @@ if page == "Main":
 
 elif page == "Info about Itai":
     # Info about Itai page.
-    st.title('איתי פרי ז"ל')
-    st.image("icons/itayperi_autoOrient_g.jpg", width=150)
+
+    st.markdown(
+        """
+        <div style="text-align: right;">
+            <h1>איתי פרי ז"ל</h1>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    # Create two columns with an empty left column and a right column for the content.
+    empty_col, right_col = st.columns([1, 3])
+    with right_col:
+        st.image("icons/itayperi_autoOrient_g.jpg", width=300)
+
     st.write(
         """
-        סיפור חייו
-בנם של אהובה ונתן. נולד ביום כ"ט באלול תשמ"ז (23.9.1987) בתל אביב. אח לנטע, עומרי ונועה.
-
-איתי נישא להילה ולזוג נולדו שלושה ילדים: עידו, גיל ואורי.
-
-ביום 7.10.2023 התגייס למילואים ושירת בחיל רגלים.
-
-רב סמל מתקדם איתי פרי נפל בקרב ביום כ"ז בכסלו תשפ"ד (10.12.2023). בן שלושים ושש בנופלו. הוא הובא למנוחות בחלקה הצבאית בבית העלמין במודיעין. הותיר אחריו אישה, שלושה ילדים, הורים ואחים.
-        """
+        <div style="direction: rtl; text-align: right;">
+            <strong>סיפור חייו</strong>
+            <br><br>
+            איתי פרי נולד ב-29 באוגוסט 1987 בתל אביב, בנו של אהובה ונתן ואח לנטע, עומרי ונועה. 
+            נישא להילה והוליד שלושה ילדים: עידו, גיל ואורי.
+            <br><br>
+            ביום 7.10.2023 התגייס למילואים ושירת בחיל רגלים.
+            <br><br>
+            רב סמל מתקדם איתי פרי נפל בקרב ביום כ"ז בכסלו תשפ"ד (10.12.2023). בן שלושים ושש בנופלו. 
+            <br><br>
+            הוא הובא למנוחות בחלקה הצבאית בבית העלמין במודיעין. הותיר אחריו אישה, שלושה ילדים, הורים ואחים.
+        </div>
+        """,
+        unsafe_allow_html=True
     )
-    st.write("Use the navigation on the sidebar to go back to the main page.")
+    # st.write("Use the navigation on the sidebar to go back to the main page.")
