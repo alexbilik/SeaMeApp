@@ -44,7 +44,21 @@ df = pd.DataFrame([
 ])
 
 # Main screen content
-st.title("Beaches in Israel")
+# st.markdown("<h1 style='text-align: center; font-size: 3em;'>sea me</h1>", unsafe_allow_html=True)
+# st.markdown("<h1 style='text-align: left; font-size: 3em;'><img src='https://www.iconsdb.com/icons/preview/icon-sets/web-2-blue/shellfish-xxl.png' style='vertical-align: middle;' width='50' height='50'><br>sea<br>me</h1>", unsafe_allow_html=True)
+# Create two columns for the icon and title text
+col1, col2 = st.columns([1, 4])  # adjust the ratio as needed
+
+with col1:
+    # Display the icon image from the URL
+    st.image("icons/seame_icon.png", width=150)
+
+with col2:
+    # Use HTML for custom styling: two lines for the title text
+    st.markdown(
+        "<h1 style='margin: 0; line-height: 1.2;'>sea<br>me</h1>",
+        unsafe_allow_html=True
+    )
 st.write(f"Displaying {len(df)} beaches.")
 
 # Display the map with the filtered beaches
