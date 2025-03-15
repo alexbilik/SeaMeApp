@@ -1,8 +1,20 @@
 import streamlit as st
 import time, random
 
-# Define the list of 10 colors
+# Define the list of 10 colors and their Hebrew translations
 colors = ["red", "blue", "green", "yellow", "purple", "orange", "pink", "cyan", "magenta", "lime"]
+hebrew_colors = {
+    "red": "אדום",
+    "blue": "כחול",
+    "green": "ירוק",
+    "yellow": "צהוב",
+    "purple": "סגול",
+    "orange": "כתום",
+    "pink": "ורוד",
+    "cyan": "תכלת",
+    "magenta": "מגנטה",
+    "lime": "ליים"
+}
 
 # Initialize session state variables if they don't exist yet.
 if "score" not in st.session_state:
@@ -19,7 +31,7 @@ if "message" not in st.session_state:
     st.session_state.message = ""
 
 st.title("Color Match Game")
-st.write("Press the button when the color of the box matches the color written on the button.")
+st.write("Press the button when the color of the box matches the color written above the button.")
 
 # Display the color box at the center using HTML/CSS
 box_html = f"""
@@ -40,8 +52,11 @@ if st.session_state.message:
     time.sleep(1)
     st.session_state.message = ""
 
+# Display the target color in Hebrew
+st.subheader(f"Target Color: {hebrew_colors[st.session_state.target_color]}")
+
 # Button for the target color.
-if st.button(st.session_state.target_color):
+if st.button("PRESS"):
     st.session_state.timer = max(0.1, st.session_state.timer - 0.1)
     if st.session_state.current_color == st.session_state.target_color:
         st.session_state.score += 1
