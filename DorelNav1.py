@@ -49,7 +49,7 @@ def main_page():
                 st.session_state.selected_riddle = riddle_num
                 st.session_state.page = "riddle"
                 st.session_state.riddle_error = ""
-                st.experimental_rerun()
+                # st.stop()
             else:
                 st.session_state.riddle_error = "Riddle number does not exist."
         except ValueError:
@@ -64,7 +64,7 @@ def riddle_page():
     st.header(f"Riddle {riddle_num}")
     if st.button("Back to Main"):
         st.session_state.page = "main"
-        st.experimental_rerun()
+        # st.stop()
 
     st.write(current_riddle["description"])
 
@@ -77,7 +77,7 @@ def riddle_page():
             else:
                 # Last riddle so go to congrats page
                 st.session_state.page = "congrats"
-                st.experimental_rerun()
+                # st.stop()
         else:
             st.error("Wrong answer. Please try again.")
 
@@ -91,7 +91,7 @@ def congrats_page():
         # Reset state to allow replay
         st.session_state.page = "main"
         st.session_state.selected_riddle = None
-        st.experimental_rerun()
+        # st.stop()
 
 # Page routing
 if st.session_state.page == "main":
