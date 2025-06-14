@@ -1,4 +1,4 @@
-from DorelNavOfficial import *
+from DorelNavOfficialT2 import *
 
 # Define your riddles here. Each riddle has a description, the correct answer,
 # a Google Maps link for the next point, and optional images to display.
