@@ -120,6 +120,11 @@ gathering_riddle_num = 560
 def go_home():
     st.session_state['stage'] = 'select'
 
+def get_google_maps_link(ggl_link):
+    latlon = ggl_link.split("/")[-1]
+    embed_url = f"https://maps.google.com/maps?q={latlon}&output=embed"
+    return embed_url
+
 # Main app logic
 def main(team='Team1', alt_riddles=None):
     global riddles
@@ -144,7 +149,7 @@ def main(team='Team1', alt_riddles=None):
             st.markdown("---")
             st.subheader("🏁 Next Point to Navigate:")
             st.markdown(f"[Open in Google Maps]({st.session_state['last_location']})")
-            components.iframe(st.session_state['last_location'], height=300, scrolling=False)
+            components.iframe(get_google_maps_link(st.session_state['last_location']), height=300, scrolling=False)
             imgs = riddles[rid]['images']
             if imgs:
                 st.image(imgs, width=200) #, caption=[f"Point {rid} photo {i+1}" for i in range(len(imgs))])
@@ -187,12 +192,13 @@ def main(team='Team1', alt_riddles=None):
             if riddles[rid]['link'] is None:
                 st.balloons(); st.success("🎉 Congratulations! You've completed the game.")
                 st.markdown(f"**Gathering Point:** [Open in Google Maps]({gathering_link})")
-                components.iframe(gathering_link, height=300, scrolling=False)
+                components.iframe(get_google_maps_link(gathering_link), height=300, scrolling=False)
             else:
                 nxt = riddles[rid]['link']
                 st.success("✅ Correct!")
                 st.markdown(f"**Next Point:** [Open in Google Maps]({nxt})")
-                components.iframe(nxt, height=300, scrolling=False)
+
+                components.iframe(get_google_maps_link(nxt), height=300, scrolling=False)
                 imgs = riddles[rid]['images']
                 if imgs:
                     st.image(imgs, width=200) #, caption=[f"Point {rid} photo {i+1}" for i in range(len(imgs))])
@@ -208,10 +214,10 @@ def main(team='Team1', alt_riddles=None):
                     if riddles[rid]['link'] is None:
                         st.balloons(); st.success("🎉 Congratulations! You've completed the game.")
                         st.markdown(f"**Gathering Point:** [Open in Google Maps]({gathering_link})")
-                        components.iframe(gathering_link, height=300, scrolling=False)
+                        components.iframe(get_google_maps_link(gathering_link), height=300, scrolling=False)
                     else:
                         st.markdown(f"**Next Point:** [Open in Google Maps]({nxt})")
-                        components.iframe(nxt, height=300, scrolling=False)
+                        components.iframe(get_google_maps_link(nxt), height=300, scrolling=False)
                         imgs = riddles[rid]['images']
                         if imgs:
                             st.image(imgs, width=200) # , caption=[f"Point {rid} photo {i+1}" for i in range(len(imgs))])
